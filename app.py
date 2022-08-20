@@ -1,10 +1,14 @@
 from flask import Flask,render_template,request
+from flask_cors import CORS, cross_origin
 import pandas as pd
 import pickle
 app=Flask(__name__)
+cors=CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 data=pd.read_csv("Clean_Data_Price.csv")
 pipe=pickle.load(open("RidgeModel.pkl","rb"))
 @app.route('/')
+@cross_origin()
 def index():
 
     locations=sorted(data["location"].unique())
