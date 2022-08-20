@@ -3,5 +3,4 @@ numpy
 pandas
 gunicorn
 sklearn
-pickle
 flask_cors
