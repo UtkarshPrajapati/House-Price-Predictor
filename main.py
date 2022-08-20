@@ -15,7 +15,10 @@ def predict():
     locations=request.form.get("location")
     bhk=request.form.get("bhk")
     bath=request.form.get("bath")
-    sqft=request.form.get("total_sqft")
+    sqft=request.form.get("sqft")
     print(locations,bhk,bath,sqft)
+    input=pd.DataFrame([[locations,sqft,bath,bhk]],columns=["location","total_sqft","bath","bhk"])
+    prediction=pipe.predict(input)[0]*1e5
+    return str(round(prediction,2))
 if __name__=="__main__":
     app.run(port=5001)
