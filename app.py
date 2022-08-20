@@ -15,6 +15,7 @@ def index():
     return render_template("index.html",locations=locations)
 
 @app.route("/predict",methods=["POST"])
+@cross_origin()
 def predict():
     locations=request.form.get("location")
     bhk=request.form.get("bhk")
@@ -25,4 +26,4 @@ def predict():
     prediction=pipe.predict(input)[0]*1e5
     return str(round(prediction,2))
 if __name__=="__main__":
-    app.run(port=5001)
+    app.run()

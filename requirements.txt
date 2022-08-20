@@ -4,3 +4,4 @@ pandas
 gunicorn
 sklearn
 flask_cors
+pickle
