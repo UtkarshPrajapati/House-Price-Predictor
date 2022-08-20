@@ -3,5 +3,5 @@ numpy
 pandas
 gunicorn
 sklearn
-flask_cors
 pickle
+flask_cors
