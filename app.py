@@ -27,6 +27,6 @@ def predict():
     if prediction>0:
         return str(round(prediction,2))
     else:
-        return -1
+        return "-1"
 if __name__=="__main__":
     app.run()
