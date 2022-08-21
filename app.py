@@ -24,6 +24,9 @@ def predict():
     print(locations,bhk,bath,sqft)
     input=pd.DataFrame([[locations,sqft,bath,bhk]],columns=["location","total_sqft","bath","bhk"])
     prediction=pipe.predict(input)[0]*1e5
-    return str(round(prediction,2))
+    if prediction>0:
+        return str(round(prediction,2))
+    else:
+        return -1
 if __name__=="__main__":
     app.run()

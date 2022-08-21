@@ -74,8 +74,13 @@
                 "Wait Predicting Price...";
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
-                    document.getElementById("prediction").innerHTML =
-                        "Prediction: Rs. " + xhr.responseText;
+                    if (xhr.responseText=="-1"){
+                        document.getElementById("prediction").innerHTML="Sorry, Can't Determine.";
+                    }
+                    else{
+                        document.getElementById("prediction").innerHTML = "Prediction: Rs. " + xhr.responseText;
+                    }
+                    
                 }
             };
             xhr.onload = function () { };
