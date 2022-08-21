@@ -21,12 +21,22 @@ def predict():
     bhk=request.form.get("bhk")
     bath=request.form.get("bath")
     sqft=request.form.get("sqft")
-    print(locations,bhk,bath,sqft)
-    input=pd.DataFrame([[locations,sqft,bath,bhk]],columns=["location","total_sqft","bath","bhk"])
-    prediction=pipe.predict(input)[0]*1e5
-    if prediction>0:
-        return str(round(prediction,2))
+    if str(bhk).replace("-","").isnumeric() and str(bath).replace("-","").isnumeric() and str(sqft).replace("-","").isnumeric():
+        input=pd.DataFrame([[locations,sqft,bath,bhk]],columns=["location","total_sqft","bath","bhk"])
+        prediction=pipe.predict(input)[0]*1e5
+        if int(bhk)<0 or int(bath)<0 or int(sqft)<0:
+            return "0"
+        elif prediction>0:
+            return str(round(prediction,2))
+        else:
+            return "-1"
     else:
-        return "-1"
+        return "-2"
+        
+
+@app.route("/about")
+def contact_ui():
+    return render_template("about.html")
+
 if __name__=="__main__":
     app.run()
